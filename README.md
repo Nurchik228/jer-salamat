@@ -6,6 +6,19 @@
 - **Live App:** https://jer-salamat.vercel.app
 - **Languages:** English (default) and Russian (`EN` / `RU`)
 
+## Portfolio & Quick Links
+
+This is a **team-built hackathon prototype**. This repository preserves the project in Nurlan Toigonbekov's GitHub account for future reference and portfolio use.
+
+- [Open the live demo](https://jer-salamat.vercel.app/)
+- [Browse the source code](https://github.com/Nurchik228/jer-salamat/tree/main/src)
+- [View the presentation (PDF)](docs/Jer_Salamat_Pitch.pdf)
+- [Инструкция на русском: открыть сайт, код и запустить проект](docs/getting-started-ru.md)
+
+**Nurlan's contribution:** research on local crops and crop rotations, coordination of team tasks, user-flow testing and feedback, and preparation and delivery of the English pitch. Software development and the final product are credited to the team; AI assistance is disclosed below.
+
+**Project status:** demonstration prototype, not a validated agricultural advisory service. See the data sources and limitations below.
+
 ---
 
 ## What the Project Does
@@ -93,8 +106,8 @@ FAO and Kyrgyz publications are used strictly as **labeled reference or context*
 
 ## Tech Stack
 
-- **Frontend & Routing:** React 19, TypeScript, Vite 8, React Router 7
-- **Styling & Design System:** Tailwind CSS 3 + custom CSS design tokens (`src/styles/tokens.css`, light & dark themes, WCAG AA contrast, 44×44 px minimum tap targets)
+- **Frontend & Routing:** React 19, TypeScript, Vite 8, React Router 8
+- **Styling & Design System:** Tailwind CSS 4 + custom CSS design tokens (`src/styles/tokens.css`, light & dark themes, WCAG AA contrast, 44×44 px minimum tap targets)
 - **Recommendation & Climate Engine:** Pure framework-free TypeScript (`src/core/climate.ts`, `src/core/rotation.ts`)
 - **Maps & Geospatial:** Leaflet + React-Leaflet (OpenStreetMap tiles with Esri World Street Map fallback, Nominatim village search)
 - **Data Visualization & 3D:** Chart.js + `react-chartjs-2` (line, bar, and area charts), Three.js + React Three Fiber (`OrbitScene` 3D globe and `ValleyTerrain` on the landing page, with SVG static fallback `public/globe-fallback.svg`), Motion (`motion/react`), Lucide icons
@@ -104,23 +117,27 @@ FAO and Kyrgyz publications are used strictly as **labeled reference or context*
 
 ## How to Run Locally
 
-**Prerequisites:** Node.js 20+ and npm. No API keys or `.env` files are required (NASA POWER and OpenStreetMap endpoints are open).
+**Prerequisites:** Node.js compatible with the versions locked in `package-lock.json`, and npm. No API keys or `.env` files are required (NASA POWER and OpenStreetMap endpoints are open).
 
 ```bash
-# 1. Install dependencies
-npm install
+# 1. Download the repository with Git, then open its folder
+git clone https://github.com/Nurchik228/jer-salamat.git
+cd jer-salamat
 
-# 2. Start the local development server
+# 2. Install the locked dependencies
+npm ci
+
+# 3. Start the local development server
 npm run dev
 
-# 3. Run typecheck, linter, i18n parity check, and production build
+# 4. Run typecheck, linter, i18n parity check, and production build
 npm run typecheck
 npm run lint
 npm run i18n:check
 npm run build
 
 # Optional utilities
-npm run fetch:demo   # Refresh cached NASA POWER JSON in public/data/
+node scripts/fetch-demo-data.mjs   # Refresh cached NASA POWER JSON in public/data/
 npm run build:globe  # Regenerate public/globe-fallback.svg
 ```
 
